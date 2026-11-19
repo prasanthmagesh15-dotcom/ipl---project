@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriSmart</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2e7d32">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="splash-full">
+
+  <!-- Top Logo -->
+  <div class="splash-top">
+    <div class="splash-logo">🌱</div>
+    <h1>AgriSmart</h1>
+    <p>Smart Farming<br>Better Tomorrow.</p>
+  </div>
+
+  <!-- Middle Farmer -->
+  <div class="splash-middle">
+    <div class="farmer-big">🧑‍🌾</div>
+    <p class="field-text">🌾 🌾 🌾 🌾 🌾</p>
+  </div>
+
+  <!-- Bottom Loading -->
+  <div class="splash-bottom">
+    <div class="loader-big"></div>
+    <p>Loading...</p>
+  </div>
+
+<script>
+  setTimeout(() => {
+    location.href = 'welcome.html';
+  }, 2500);
+  if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Assistant · AgriSmart</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body class="app-body">
+    <main class="app-shell" data-protected-page>
+        <header class="app-header"><h1>AI Assistant</h1><a href="dashboard.html">⌂ Home</a></header>
+        <section class="app-card chat-list" id="chat-list" aria-live="polite">
+            <div class="chat-bubble">Hi <span data-demo="farmerName">Farmer</span>! Ask me about your sample farm.</div>
+            <div class="chat-bubble">Demo tip: check soil moisture and inspect leaves regularly.</div>
+        </section>
+        <form id="chat-form" class="app-card">
+            <label for="chat-input">Your question</label>
+            <input id="chat-input" required placeholder="Ask a farming question">
+            <button class="app-button" type="submit" style="margin-top:10px">Send</button>
+        </form>
+        <p class="app-muted">Replies are fixed prototype examples, not live AI advice.</p>
+        <a class="app-back" href="dashboard.html">← Back to dashboard</a>
+    </main>
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = document.getElementById('chat-input');
+            const list = document.getElementById('chat-list');
+            const question = document.createElement('div');
+            question.className = 'chat-bubble user';
+            question.textContent = input.value;
+            const answer = document.createElement('div');
+            answer.className = 'chat-bubble';
+            answer.textContent = 'Demo suggestion: inspect your crop and check the sensor readings before taking action.';
+            list.append(question, answer);
+            input.value = '';
+        });
+    </script>
+</body>
+</html>

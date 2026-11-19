@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Capture Image · AgriSmart</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body class="app-body">
+    <main class="app-shell" data-protected-page>
+        <header class="app-header"><h1>Capture Image</h1><a href="dashboard.html">⌂ Home</a></header>
+        <section class="app-card">
+            <h2>Upload a crop leaf</h2>
+            <p class="app-muted">Choose an image to preview. The result is a fixed demo, not an actual AI diagnosis.</p>
+            <input type="file" accept="image/*" capture="environment" id="leaf-image">
+            <img id="leaf-preview" alt="Selected leaf preview" hidden style="width:100%;margin-top:12px;border-radius:14px">
+        </section>
+        <a class="app-button" href="disease.html">Analyze Demo Image</a>
+        <a class="app-back" href="dashboard.html">← Back to dashboard</a>
+    </main>
+    <script>
+        document.getElementById('leaf-image').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            const preview = document.getElementById('leaf-preview');
+            preview.src = URL.createObjectURL(file);
+            preview.hidden = false;
+        });
+    </script>
+</body>
+</html>

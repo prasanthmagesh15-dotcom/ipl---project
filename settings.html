@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+<style>
+body{font-family:Arial;background:#f1f5f0;padding:20px}
+body.dark{background:#222;color:#fff}
+.card{background:#fff;padding:14px;border-radius:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+body.dark .card{background:#333;color:#fff}
+.switch{position:relative;width:50px;height:26px}
+.switch input{display:none}
+.slider{position:absolute;inset:0;background:#ccc;border-radius:30px}
+.slider:before{content:"";position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.3s}
+input:checked+.slider{background:#2e8b57}
+input:checked+.slider:before{transform:translateX(24px)}
+#langBox{display:none;background:#fff;padding:10px;border-radius:12px;margin-top:-5px}
+#langBox div{padding:8px;cursor:pointer}
+</style></head>
+<body data-protected-page>
+
+<header class="app-header">
+  <a href="dashboard.html" aria-label="Back to home">←</a>
+  <h1>⚙️ Settings</h1>
+</header>
+
+<div class="card"><b>👤 Farmer <span data-demo="farmerName">Kumar</span><br><small data-demo="city">Chennai</small></b></div>
+
+<div class="card" onclick="showLang()"><span>🌐 Language</span><span><b id="cur">English</b> ></span></div>
+<div id="langBox">
+  <div onclick="setLang('English')">English</div>
+  <div onclick="setLang('Tamil - தமிழ்')">Tamil - தமிழ்</div>
+</div>
+
+<div class="card"><span>🔔 Notifications</span>
+<label class="switch"><input type="checkbox" checked onchange="alert(this.checked?'Notifications ON':'Notifications OFF')"><span class="slider"></span></label></div>
+
+<div class="card"><span>🌙 Dark Mode</span>
+<label class="switch"><input type="checkbox" onchange="document.body.classList.toggle('dark',this.checked)"><span class="slider"></span></label></div>
+
+<div class="card"><span>💾 Data Backup</span><span>></span></div>
+<div class="card" onclick="location.href='about.html'"><span>ℹ️ About App</span><span>></span></div>
+<div class="card" onclick="location.href='help.html'"><span>❓ Help & Support</span><span>></span></div>
+<div class="card" data-logout><span>↪ Log out</span><span>></span></div>
+
+<script>
+function showLang(){let b=document.getElementById('langBox');b.style.display=b.style.display=='block'?'none':'block'}
+function setLang(l){document.getElementById('cur').innerText=l;document.getElementById('langBox').style.display='none'}
+</script>
+</body></html>
