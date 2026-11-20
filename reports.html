@@ -11,27 +11,34 @@
     <main class="app-shell" data-protected-page>
         <header class="app-header"><h1>Reports & History</h1><a href="dashboard.html">⌂ Home</a></header>
         <section class="app-card">
-            <h2>Monthly field activity</h2>
-            <div class="bar-chart" aria-label="Sample monthly crop activity">
-                <div><i style="height:45%"></i>Jul</div><div><i style="height:65%"></i>Aug</div>
-                <div><i style="height:55%"></i>Sep</div><div><i style="height:82%"></i>Oct</div>
-                <div><i style="height:70%"></i>Nov</div>
+            <h2>Crop growth &amp; soil moisture</h2>
+            <div class="bar-chart" role="img" aria-label="Crop growth and soil moisture percentages">
+                <div><strong data-report-value="growth">65%</strong><i data-report-bar="growth" style="height:65%"></i><span>Crop growth</span></div>
+                <div><strong data-report-value="moisture">68%</strong><i data-report-bar="moisture" style="height:68%"></i><span>Soil moisture</span></div>
             </div>
         </section>
         <section class="app-grid">
-            <article class="app-card"><h2>Harvest estimate</h2><strong>1.8 tons</strong><p class="app-muted">Sample estimate</p></article>
-            <article class="app-card"><h2>Field health</h2><strong data-demo="farmStatus">Healthy</strong><p class="app-muted">Based on demo readings</p></article>
+            <article class="app-card"><h2>Harvest estimate</h2><strong>1.8 tons</strong></article>
+            <article class="app-card"><h2>Field health</h2><strong data-demo="farmStatus">Healthy</strong><p class="app-muted">Based on field readings</p></article>
         </section>
-        <button class="app-button" id="download-report">Download sample report</button>
-        <p class="app-muted">Report values are examples for the prototype.</p>
+        <button class="app-button" id="download-report">Download report</button>
         <a class="app-back" href="dashboard.html">← Back to dashboard</a>
     </main>
     <script>
+        const reportReadings = sessionStorage.getItem('agrismart-active-farmer') === 'ravi'
+            ? { growth: 42, moisture: 18 }
+            : { growth: 65, moisture: 68 };
+
+        Object.entries(reportReadings).forEach(([reading, value]) => {
+            document.querySelector(`[data-report-value="${reading}"]`).textContent = `${value}%`;
+            document.querySelector(`[data-report-bar="${reading}"]`).style.height = `${value}%`;
+        });
+
         document.getElementById('download-report').addEventListener('click', () => {
-            const file = new Blob(['Month,Sample harvest (tons)\nJuly,1.2\nAugust,1.5\nSeptember,1.4\nOctober,1.8'], { type: 'text/csv' });
+            const file = new Blob(['Month,Harvest (tons)\nJuly,1.2\nAugust,1.5\nSeptember,1.4\nOctober,1.8'], { type: 'text/csv' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(file);
-            link.download = 'agrismart-sample-report.csv';
+            link.download = 'agrismart-report.csv';
             link.click();
             URL.revokeObjectURL(link.href);
         });

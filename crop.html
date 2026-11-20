@@ -8,21 +8,44 @@
     <script src="app.js" defer></script>
 </head>
 <body class="app-body">
-    <main class="app-shell" data-protected-page>
-        <header class="app-header"><h1>Crop Details</h1><a href="dashboard.html">⌂ Home</a></header>
-        <section class="app-card">
-            <h2>🌾 <span data-demo="cropName">Paddy Field</span></h2>
-            <span class="app-chip" data-demo="cropStatus">Healthy</span>
-            <p>Growth stage: <strong data-demo="cropStage">Tillering · 65%</strong></p>
-            <p>Field size: <strong data-demo="fieldArea">2.5 acres</strong></p>
+    <main class="app-shell crop-page" data-protected-page>
+        <header class="app-header">
+            <a href="dashboard.html" aria-label="Back to home">←</a>
+            <h1>Crop Details</h1>
+            <span aria-hidden="true">⋮</span>
+        </header>
+        <div class="crop-hero">
+            <img src="paddy-field.png" alt="Rice stalks growing in a green paddy field">
+        </div>
+        <section class="app-card crop-summary">
+            <div class="crop-title-row">
+                <div><h2 data-crop-name>Paddy</h2><p data-crop-stage-label>Growth Stage</p></div>
+                <span class="app-chip crop-status" data-crop-status>Healthy</span>
+            </div>
+            <div class="crop-progress-label"><span data-crop-stage> tillering</span><strong data-crop-progress-label>65%</strong></div>
+            <progress class="crop-progress" data-crop-progress value="65" max="100" aria-label="Crop growth progress"></progress>
         </section>
-        <section class="app-card">
-            <h2>Care tips</h2>
-            <p>✓ Keep soil moist, but avoid waterlogging.</p>
-            <p>✓ Check leaves regularly for pests or disease.</p>
-            <p>✓ Follow a locally recommended nutrient plan.</p>
+        <section class="app-card crop-care">
+            <h2>Care Tips</h2>
+            <ul>
+                <li>Keep soil moist</li>
+                <li>Avoid excess water</li>
+                <li>Use organic manure</li>
+            </ul>
         </section>
-        <a class="app-back" href="dashboard.html">← Back to dashboard</a>
+        <a class="app-button crop-details-button" href="map.html">View More Details <span aria-hidden="true">→</span></a>
     </main>
+    <script>
+        if (sessionStorage.getItem('agrismart-active-farmer') === 'ravi') {
+            document.querySelector('[data-crop-stage]').textContent = 'Vegetative';
+            document.querySelector('[data-crop-progress-label]').textContent = '42%';
+            document.querySelector('[data-crop-progress]').value = 42;
+            document.querySelector('[data-crop-status]').textContent = 'Needs attention';
+            document.querySelector('[data-crop-status]').classList.add('alert');
+            document.querySelector('.crop-care li:first-child').textContent = 'Increase soil moisture';
+            document.querySelector('.crop-care li:nth-child(2)').textContent = 'Check plants for stress';
+            document.querySelector('.crop-care li:nth-child(3)').textContent = 'Follow a local nutrient plan';
+        }
+    </script>
 </body>
 </html>

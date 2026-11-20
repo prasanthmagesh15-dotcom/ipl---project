@@ -35,7 +35,7 @@ function initialize() {
             const error = document.querySelector('[data-login-error]');
 
             if (!id || input.get('password') !== '1234') {
-                error.textContent = 'Demo ID or password is incorrect.';
+                error.textContent = 'ID or password is incorrect.';
                 return;
             }
 

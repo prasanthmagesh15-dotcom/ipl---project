@@ -9,27 +9,35 @@
 <body>
     <main class="portal-shell">
         <header class="portal-header">
-            <div class="portal-top"><span>☰</span><a href="kumar-alerts.html">🔔 Alerts</a><a href="login.html">Log out</a></div>
+            <div class="portal-top">
+                <details class="portal-menu">
+                    <summary aria-label="Open navigation menu">☰</summary>
+                    <nav class="portal-menu-items" aria-label="More pages">
+                        <a href="about.html">About</a>
+                        <a href="help.html">Help &amp; Support</a>
+                        <a href="weather.html">Weather</a>
+                    </nav>
+                </details>
+                <a href="kumar-alerts.html">🔔 Alerts</a><a href="login.html">Log out</a>
+            </div>
             <h1>Hello, Kumar!</h1><p>Let's grow together 🌱</p>
         </header>
         <div class="portal-content">
             <section class="portal-weather"><span class="icon">☀️</span><div><strong>32°C</strong><br>Mostly sunny</div><b>Chennai<br>Today</b></section>
-            <p class="portal-note">Sample demo values · Not live data</p>
             <section class="portal-health good"><strong>Farm status: Healthy ✅</strong>All sensor readings are in the healthy range.</section>
             <div class="portal-tiles">
-                <a class="portal-tile" href="capture.html">🌿<br>Disease Detection</a>
-                <a class="portal-tile" href="kumar-sensor.html">📶<br>Sensor Monitoring</a>
-                <a class="portal-tile" href="crop.html">🌱<br>Crop Advisory</a>
-                <a class="portal-tile" href="ai.html">🤖<br>AI Assistant</a>
+                <a class="portal-tile" href="capture.html"><span class="portal-tile-icon" aria-hidden="true">🌿</span><span>Disease Detection</span></a>
+                <a class="portal-tile" href="kumar-sensor.html"><span class="portal-tile-icon" aria-hidden="true">📶</span><span>Sensor Monitoring</span></a>
+                <a class="portal-tile" href="crop.html"><span class="portal-tile-icon" aria-hidden="true">🌱</span><span>Crop Advisory</span></a>
+                <a class="portal-tile" href="ai.html"><span class="portal-tile-icon" aria-hidden="true">🤖</span><span>AI Assistant</span></a>
             </div>
             <section class="portal-card">
                 <h2>My Field</h2>
                 <div class="portal-field"><span class="portal-field-icon">🌾</span><div><strong>Paddy Field</strong><p>Healthy · Tillering 65%</p><span class="portal-label">2.5 acres · Soil moisture 68%</span></div></div>
                 <a href="map.html">View farm map →</a>
             </section>
-            <p class="portal-note">Kumar's sample farm · Prototype</p>
         </div>
-        <nav class="portal-nav"><a href="kumar.html">⌂ Home</a><a href="reports.html">▤ Reports</a><a href="kumar-sensor.html">📶 Sensors</a><a href="kumar-alerts.html">🔔 Alerts</a></nav>
+        <nav class="portal-nav"><a class="active" href="kumar.html" aria-current="page">⌂ Home</a><a href="reports.html">▤ Reports</a><a href="kumar-alerts.html">🔔 Notifications</a><a href="settings.html">⚙️ Settings</a></nav>
     </main>
 </body>
 </html>

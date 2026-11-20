@@ -6,36 +6,35 @@
     <title>AI Assistant · AgriSmart</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
+    <script src="leaf-model.js" defer></script>
+    <script src="ai-chat.js" defer></script>
 </head>
 <body class="app-body">
     <main class="app-shell" data-protected-page>
         <header class="app-header"><h1>AI Assistant</h1><a href="dashboard.html">⌂ Home</a></header>
-        <section class="app-card chat-list" id="chat-list" aria-live="polite">
-            <div class="chat-bubble">Hi <span data-demo="farmerName">Farmer</span>! Ask me about your sample farm.</div>
-            <div class="chat-bubble">Demo tip: check soil moisture and inspect leaves regularly.</div>
+        <section class="app-card" aria-live="polite" aria-label="Latest leaf analysis">
+            <p class="app-muted">On-device model result</p>
+            <h2 id="analysis-class">No leaf analyzed yet</h2>
+            <p id="analysis-score">Choose a leaf image to run the offline model.</p>
+            <p id="analysis-image" class="app-muted" hidden></p>
+        </section>
+        <section class="app-card" aria-label="Offline farming chatbot">
+            <h2>Offline Farm Chat</h2>
+            <p class="app-muted">Ask about soil moisture, watering, paddy care, sensors, or leaf analysis. I can help even when you’re offline.</p>
+        </section>
+        <section class="app-card chat-list" id="chat-list" aria-live="polite" aria-relevant="additions">
+            <div class="chat-bubble">Hi <span id="chat-farmer-name">Farmer</span>! I can help with common farm questions while offline.</div>
         </section>
         <form id="chat-form" class="app-card">
             <label for="chat-input">Your question</label>
-            <input id="chat-input" required placeholder="Ask a farming question">
+            <textarea id="chat-input" required maxlength="500" placeholder="Ask a farming question"></textarea>
             <button class="app-button" type="submit" style="margin-top:10px">Send</button>
         </form>
-        <p class="app-muted">Replies are fixed prototype examples, not live AI advice.</p>
+        <section class="app-card">
+            <p>Check the crop and leaf carefully. Confirm the result with a local agriculture expert before treatment.</p>
+        </section>
+        <a class="app-button secondary" href="capture.html">Capture or choose a leaf</a>
         <a class="app-back" href="dashboard.html">← Back to dashboard</a>
     </main>
-    <script>
-        document.getElementById('chat-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const input = document.getElementById('chat-input');
-            const list = document.getElementById('chat-list');
-            const question = document.createElement('div');
-            question.className = 'chat-bubble user';
-            question.textContent = input.value;
-            const answer = document.createElement('div');
-            answer.className = 'chat-bubble';
-            answer.textContent = 'Demo suggestion: inspect your crop and check the sensor readings before taking action.';
-            list.append(question, answer);
-            input.value = '';
-        });
-    </script>
 </body>
 </html>

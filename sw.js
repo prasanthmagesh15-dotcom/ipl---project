@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agrismart-v1';
+const CACHE_NAME = 'agrismart-v6';
 const APP_FILES = [
   './',
   './index.html',
@@ -12,20 +12,31 @@ const APP_FILES = [
   './ravi-sensor.html',
   './ravi-alerts.html',
   './capture.html',
+  './leaf-model.js',
   './disease.html',
   './crop.html',
   './ai.html',
+  './ai-chat.js',
   './map.html',
   './weather.html',
   './reports.html',
   './settings.html',
   './help.html',
   './about.html',
-  './wifi.html',
   './style.css',
   './app.js',
   './manifest.json',
   './icon.svg',
+  './paddy-field.png',
+  './AgriNex_AI.tflite',
+  './vendor/tfjs-core/tf-core.min.js',
+  './vendor/tfjs-backend-cpu/tf-backend-cpu.min.js',
+  './vendor/tfjs-tflite/dist/tf-tflite.min.js',
+  './vendor/tfjs-tflite/wasm/tflite_web_api_client.js',
+  './vendor/tfjs-tflite/wasm/tflite_web_api_cc.js',
+  './vendor/tfjs-tflite/wasm/tflite_web_api_cc.wasm',
+  './vendor/tfjs-tflite/wasm/tflite_web_api_cc_simd.js',
+  './vendor/tfjs-tflite/wasm/tflite_web_api_cc_simd.wasm',
   './WhatsApp Image 2026-11-11 at 4.12.25 PM.jpg'
 ];
 

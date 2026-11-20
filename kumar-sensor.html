@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ram's Sensors · AgriSmart</title>
+    <title>Sensor Monitoring · AgriSmart</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
-<body class="app-body">
-    <main class="app-shell" data-protected-page>
-        <header class="app-header">
-            <div class="app-profile-heading">
-                <img class="app-profile-avatar" src="WhatsApp Image 2026-11-11 at 4.12.25 PM.jpg" alt="Ram, farmer">
-                <div><h1>Sensor Monitoring</h1><p class="app-muted">Ram's farm · Sample data</p></div>
-            </div>
-            <a href="kumar.html">⌂ Home</a>
+<body class="app-body sensor-body">
+    <main class="app-shell sensor-page" data-protected-page>
+        <header class="app-header sensor-header">
+            <a href="kumar.html" aria-label="Back to home">←</a>
+            <h1>Sensor Monitoring</h1>
         </header>
-        <section class="app-card sensor-overview"><strong>Farm status: Healthy ✅</strong><p>All sample readings are within the healthy range.</p></section>
-        <section class="sensor-grid" aria-label="Sample sensor readings">
-            <article class="app-card sensor-card"><span class="sensor-icon">💧</span><span class="app-muted">Soil moisture</span><strong>68%</strong><span class="portal-status">Good</span></article>
-            <article class="app-card sensor-card"><span class="sensor-icon">🌡️</span><span class="app-muted">Temperature</span><strong>31°C</strong><span class="portal-status">Normal</span></article>
-            <article class="app-card sensor-card"><span class="sensor-icon">💨</span><span class="app-muted">Air humidity</span><strong>72%</strong><span class="portal-status">Good</span></article>
-            <article class="app-card sensor-card"><span class="sensor-icon">🧪</span><span class="app-muted">Soil pH</span><strong>6.7</strong><span class="portal-status">Good</span></article>
+        <section class="sensor-readings">
+            <h2>Today's Sensor Readings</h2>
+            <div class="sensor-grid" aria-label="Today's sensor readings">
+                <article class="app-card sensor-card">
+                    <span class="sensor-card-heading"><span class="sensor-icon">💧</span><span class="app-muted">Soil Moisture</span></span>
+                    <strong>68<small>%</small></strong><span class="portal-status">Optimal</span>
+                </article>
+                <article class="app-card sensor-card">
+                    <span class="sensor-card-heading"><span class="sensor-icon">🌡️</span><span class="app-muted">Temperature</span></span>
+                    <strong>31<small>°C</small></strong><span class="portal-status">Normal</span>
+                </article>
+                <article class="app-card sensor-card">
+                    <span class="sensor-card-heading"><span class="sensor-icon">💨</span><span class="app-muted">Humidity</span></span>
+                    <strong>74<small>%</small></strong><span class="portal-status">Good</span>
+                </article>
+                <article class="app-card sensor-card">
+                    <span class="sensor-card-heading"><span class="sensor-icon">🧪</span><span class="app-muted">pH</span></span>
+                    <strong>7.4</strong><span class="portal-status">Good</span>
+                </article>
+            </div>
         </section>
-        <p class="app-muted">Static sample readings · Not connected to real sensors</p>
-        <nav class="portal-nav"><a href="kumar.html">⌂ Home</a><a href="kumar-sensor.html">📶 Sensors</a><a href="kumar-alerts.html">🔔 Alerts</a></nav>
+        <nav class="portal-nav"><a href="kumar.html">⌂ Home</a><a class="active" href="kumar-sensor.html" aria-current="page">📶 Sensors</a><a href="kumar-alerts.html">🔔 Alerts</a></nav>
     </main>
 </body>
 </html>
