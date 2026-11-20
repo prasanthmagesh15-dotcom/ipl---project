@@ -47,51 +47,66 @@
     }
 
     function initializeAnalyzer() {
-        const input = document.getElementById('leaf-image');
-        if (!input) return;
+        const galleryInput = document.getElementById('leaf-image-gallery');
+        const cameraInput = document.getElementById('leaf-image-camera');
+        const galleryButton = document.getElementById('choose-gallery');
+        const cameraButton = document.getElementById('take-photo');
+        if (!galleryInput || !cameraInput || !galleryButton || !cameraButton) return;
 
         const preview = document.getElementById('leaf-preview');
         const analyzeButton = document.getElementById('analyze-image');
         const status = document.getElementById('analysis-status');
+        let selectedFile = null;
         let imageUrl = '';
         let modelPromise;
 
-        input.addEventListener('change', () => {
-            const file = input.files && input.files[0];
-            analyzeButton.disabled = !file;
-            if (imageUrl) URL.revokeObjectURL(imageUrl);
-            imageUrl = '';
-            preview.hidden = true;
-            status.textContent = '';
+        galleryButton.addEventListener('click', () => galleryInput.click());
+        cameraButton.addEventListener('click', () => cameraInput.click());
 
-            if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                status.textContent = 'Please choose a valid image file.';
-                analyzeButton.disabled = true;
-                return;
-            }
+        [galleryInput, cameraInput].forEach((input) => {
+            input.addEventListener('change', () => {
+                const file = input.files && input.files[0];
+                input.value = '';
+                if (!file) return;
 
-            imageUrl = URL.createObjectURL(file);
-            preview.onload = () => {
-                preview.hidden = false;
-                status.textContent = 'Image ready. Tap Analyze Image to run the offline model.';
-            };
-            preview.onerror = () => {
-                status.textContent = 'This image could not be opened. Please choose another image.';
+                selectedFile = file;
                 analyzeButton.disabled = true;
-            };
-            preview.src = imageUrl;
+                if (imageUrl) URL.revokeObjectURL(imageUrl);
+                imageUrl = '';
+                preview.hidden = true;
+                status.textContent = '';
+
+                if (!file.type.startsWith('image/')) {
+                    selectedFile = null;
+                    status.textContent = 'Please choose a valid image file.';
+                    return;
+                }
+
+                imageUrl = URL.createObjectURL(file);
+                preview.onload = () => {
+                    preview.hidden = false;
+                    analyzeButton.disabled = false;
+                    status.textContent = 'Image ready. Tap Analyze Image to run the offline model.';
+                };
+                preview.onerror = () => {
+                    selectedFile = null;
+                    status.textContent = 'This image could not be opened. Please choose another image.';
+                    analyzeButton.disabled = true;
+                };
+                preview.src = imageUrl;
+            });
         });
 
         analyzeButton.addEventListener('click', async () => {
-            const file = input.files && input.files[0];
+            const file = selectedFile;
             if (!file || !preview.naturalWidth) {
                 status.textContent = 'Choose a valid leaf image before analyzing.';
                 return;
             }
 
             analyzeButton.disabled = true;
-            input.disabled = true;
+            galleryButton.disabled = true;
+            cameraButton.disabled = true;
             try {
                 status.textContent = 'Loading the offline AI model...';
                 if (!window.tf || !window.tflite) {
@@ -160,7 +175,8 @@
                 console.error('Leaf image analysis failed.', error);
                 status.textContent = `Analysis failed: ${error.message}`;
                 analyzeButton.disabled = false;
-                input.disabled = false;
+                galleryButton.disabled = false;
+                cameraButton.disabled = false;
                 modelPromise = undefined;
             }
         });

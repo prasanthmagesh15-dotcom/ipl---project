@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agrismart-v6';
+const CACHE_NAME = 'agrismart-v7';
 const APP_FILES = [
   './',
   './index.html',

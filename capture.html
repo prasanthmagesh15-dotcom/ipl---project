@@ -12,11 +12,16 @@
         <header class="app-header"><h1>Capture Image</h1><a href="dashboard.html">⌂ Home</a></header>
         <section class="app-card" data-leaf-analyzer>
             <h2>Upload a crop leaf</h2>
-            <p class="app-muted">Images are analyzed on this device with the saved model; the image is not uploaded.</p>
-            <input type="file" accept="image/*" capture="environment" id="leaf-image">
+            <p class="app-muted">Choose a leaf photo from your gallery or take a new photo.</p>
+            <div class="app-grid capture-actions">
+                <button class="app-button secondary" type="button" id="choose-gallery">Choose from Gallery</button>
+                <button class="app-button" type="button" id="take-photo">Take Photo</button>
+            </div>
+            <input type="file" accept="image/*" id="leaf-image-gallery" hidden>
+            <input type="file" accept="image/*" capture="environment" id="leaf-image-camera" hidden>
             <img id="leaf-preview" alt="Selected leaf preview" hidden style="width:100%;margin-top:12px;border-radius:14px">
             <button class="app-button" type="button" id="analyze-image" disabled style="margin-top:12px">Analyze Image</button>
-            <p id="analysis-status" class="app-muted" role="status" aria-live="polite">Choose or capture a leaf image to begin.</p>
+            <p id="analysis-status" class="app-muted" role="status" aria-live="polite">Choose a photo or take a new one to begin.</p>
         </section>
         <a class="app-back" href="dashboard.html">← Back to dashboard</a>
     </main>

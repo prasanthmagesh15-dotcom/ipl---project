@@ -115,6 +115,8 @@
 .chat-list { display: grid; gap: 10px; }
 .chat-bubble { max-width: 90%; padding: 11px 13px; border-radius: 16px; background: var(--page-green); }
 .chat-bubble.user { justify-self: end; color: white; background: var(--agri-green); }
+.capture-actions { margin-top: 12px; }
+.capture-actions .app-button { width: 100%; padding: 12px 8px; }
 .app-back { display: inline-block; margin-top: 16px; }
 
 .portal-shell { width: min(100%, 430px); min-height: 100vh; margin: auto; padding-bottom: 82px; background: var(--paper-cream); }
