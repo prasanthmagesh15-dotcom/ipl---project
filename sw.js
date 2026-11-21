@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agrismart-v8';
+const CACHE_NAME = 'agrismart-v9';
 const APP_FILES = [
   './',
   './index.html',
@@ -27,6 +27,8 @@ const APP_FILES = [
   './app.js',
   './manifest.json',
   './icon.svg',
+  './icon-192.png',
+  './icon-512.png',
   './paddy-field.png',
   './AgriNex_AI.tflite',
   './vendor/tfjs-core/tf-core.min.js',
