@@ -58,6 +58,14 @@ function initialize() {
         return;
     }
 
+    const farmerProfile = activeFarmer === 'ravi'
+        ? { name: 'Ravi', city: 'Chengalpattu' }
+        : { name: 'Kumar', city: 'Chennai' };
+    const farmerName = document.querySelector('[data-demo="farmerName"]');
+    const farmerCity = document.querySelector('[data-demo="city"]');
+    if (farmerName) farmerName.textContent = farmerProfile.name;
+    if (farmerCity) farmerCity.textContent = farmerProfile.city;
+
     document.querySelectorAll('a[href="dashboard.html"]').forEach((link) => {
         link.href = `${activeFarmer}.html`;
     });
