@@ -105,11 +105,12 @@
 .app-chip.alert { color: var(--alert-red); background: var(--alert-pink); }
 .app-shell input, .app-shell textarea, .app-shell select { width: 100%; padding: 12px; border: 1px solid var(--input-border); border-radius: 12px; font: inherit; }
 .app-shell textarea { min-height: 70px; resize: vertical; }
+.reports-page { padding-bottom: 82px; }
 .bar-chart { display: flex; height: 150px; align-items: end; justify-content: space-around; gap: 10px; padding: 12px 4px 0; border-bottom: 1px solid var(--chart-border); }
-.bar-chart div { display: grid; height: 100%; grid-template-rows: 16px 1fr auto; justify-items: center; gap: 6px; color: var(--chart-label); font-size: 12px; }
-.bar-chart strong { align-self: center; font-size: 11px; }
-.bar-chart i { width: 24px; min-height: 8px; border-radius: 6px 6px 0 0; background: var(--chart-green); }
-.bar-chart span { white-space: nowrap; }
+.bar-chart div { position: relative; display: grid; height: 100%; grid-template-rows: 1fr auto; justify-items: center; gap: 6px; color: var(--chart-label); font-size: 12px; }
+.bar-chart strong { position: absolute; bottom: calc(var(--bar-height, 50%) + 24px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 11px; }
+.bar-chart i { align-self: end; width: 24px; min-height: 8px; margin-bottom: 0; border-radius: 6px 6px 0 0; background: var(--chart-green); }
+.bar-chart span { align-self: end; padding-top: 4px; white-space: nowrap; }
 .map-plot { position: relative; height: 260px; overflow: hidden; border: 8px solid white; border-radius: 18px; background: repeating-linear-gradient(35deg, var(--field-green-light) 0 22px, var(--field-green) 22px 44px); }
 .map-pin { position: absolute; top: 43%; left: 52%; padding: 9px; border-radius: 50%; background: var(--leaf-green); color: white; }
 .chat-list { display: grid; gap: 10px; }
@@ -143,14 +144,14 @@
 .portal-tile { display: grid; height: 110px; min-height: 110px; place-content: center; gap: 5px; padding: 12px; border-radius: 18px; background: white; box-shadow: 0 3px 12px var(--bar-shadow); color: var(--body-text); font-weight: bold; text-align: center; text-decoration: none; }
 .portal-tile-icon { font-size: 40px; line-height: 1; }
 .portal-tile > span:last-child { font-size: 14px; }
-.portal-field { gap: 12px; justify-content: flex-start; }
-.portal-field-icon { font-size: 38px; }
-.portal-field p { margin: 5px 0; }
 .portal-label { color: var(--note-green); font-size: 13px; }
 .portal-status { color: var(--leaf-green); font-size: 13px; font-weight: bold; }
 .portal-status.alert { color: var(--alert-red); }
 .sensor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
 .sensor-card { display: grid; min-height: 145px; align-content: center; justify-items: start; gap: 7px; margin: 6px 0; }
+.sensor-card-link { color: inherit; cursor: pointer; text-decoration: none; transition: background-color 160ms ease; }
+.sensor-card-link:hover { background: var(--page-green); }
+.sensor-card-link:focus-visible { outline: 3px solid var(--sunrise-gold); outline-offset: 2px; }
 .sensor-card strong { color: var(--sensor-text); font-size: 26px; }
 .sensor-icon { font-size: 30px; line-height: 1; }
 .notification-empty { padding: 28px 18px; text-align: center; }
@@ -181,9 +182,14 @@
 
 .crop-page { padding-bottom: 28px; }
 .crop-page .app-header h1 { flex: 1; text-align: center; }
-.crop-page .app-header > span { color: var(--quiet-green); font-size: 22px; }
-.crop-hero { height: 190px; overflow: hidden; margin: 0 0 14px; border-radius: 20px; }
-.crop-hero img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+.crop-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.crop-option { display: grid; min-height: 82px; place-items: center; align-content: center; gap: 5px; border: 2px solid var(--border-green); border-radius: 16px; color: var(--care-text); background: white; cursor: pointer; }
+.crop-option span { font-size: 34px; line-height: 1; }
+.crop-option strong { font-size: 13px; }
+.crop-option.active { border-color: var(--crop-green); color: var(--leaf-green); background: var(--page-green); box-shadow: 0 3px 10px var(--bar-shadow); }
+.crop-option:focus-visible { outline: 3px solid var(--sunrise-gold); outline-offset: 2px; }
+.crop-hero { display: grid; height: 190px; place-items: center; margin: 0 0 14px; border-radius: 20px; background: var(--page-green); }
+.crop-hero-icon { font-size: 96px; line-height: 1; }
 .crop-summary { margin-top: 0; }
 .crop-title-row, .crop-progress-label { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .crop-title-row h2 { margin: 0; color: var(--sensor-text); font-size: 21px; }

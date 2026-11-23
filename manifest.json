@@ -1,6 +1,6 @@
 {
-  "name": "AgriSmart",
-  "short_name": "AgriSmart",
+  "name": "AgriNex",
+  "short_name": "AgriNex",
   "description": "Offline smart farming companion",
   "start_url": "./index.html",
   "scope": "./",

@@ -6,7 +6,7 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#2e7d32">
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <title>Crop Details · AgriSmart</title>
+    <title>Crop Details · AgriNex</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
@@ -15,40 +15,96 @@
         <header class="app-header">
             <a href="dashboard.html" aria-label="Back to home">←</a>
             <h1>Crop Details</h1>
-            <span aria-hidden="true">⋮</span>
         </header>
-        <div class="crop-hero">
-            <img src="paddy-field.png" alt="Rice stalks growing in a green paddy field">
+        <nav class="crop-selector" aria-label="Choose a crop">
+            <button class="crop-option" type="button" data-crop-key="tomato" aria-pressed="false">
+                <span aria-hidden="true">🍅</span>
+                <strong>Tomato</strong>
+            </button>
+            <button class="crop-option" type="button" data-crop-key="potato" aria-pressed="false">
+                <span aria-hidden="true">🥔</span>
+                <strong>Potato</strong>
+            </button>
+            <button class="crop-option" type="button" data-crop-key="pepper" aria-pressed="false">
+                <span aria-hidden="true">🌶️</span>
+                <strong>Pepper</strong>
+            </button>
+        </nav>
+        <div class="crop-hero" aria-hidden="true">
+            <span class="crop-hero-icon" data-crop-icon>🍅</span>
         </div>
         <section class="app-card crop-summary">
             <div class="crop-title-row">
-                <div><h2 data-crop-name>Paddy</h2><p data-crop-stage-label>Growth Stage</p></div>
-                <span class="app-chip crop-status" data-crop-status>Healthy</span>
+                <div><h2 data-crop-name>Tomato</h2><p>AI-supported crop</p></div>
+                <span class="app-chip">Supported</span>
             </div>
-            <div class="crop-progress-label"><span data-crop-stage> tillering</span><strong data-crop-progress-label>65%</strong></div>
-            <progress class="crop-progress" data-crop-progress value="65" max="100" aria-label="Crop growth progress"></progress>
         </section>
         <section class="app-card crop-care">
             <h2>Care Tips</h2>
-            <ul>
-                <li>Keep soil moist</li>
-                <li>Avoid excess water</li>
-                <li>Use organic manure</li>
-            </ul>
+            <ul data-crop-tips></ul>
         </section>
-        <a class="app-button crop-details-button" href="map.html">View More Details <span aria-hidden="true">→</span></a>
     </main>
     <script>
-        if (sessionStorage.getItem('agrismart-active-farmer') === 'ravi') {
-            document.querySelector('[data-crop-stage]').textContent = 'Vegetative';
-            document.querySelector('[data-crop-progress-label]').textContent = '42%';
-            document.querySelector('[data-crop-progress]').value = 42;
-            document.querySelector('[data-crop-status]').textContent = 'Needs attention';
-            document.querySelector('[data-crop-status]').classList.add('alert');
-            document.querySelector('.crop-care li:first-child').textContent = 'Increase soil moisture';
-            document.querySelector('.crop-care li:nth-child(2)').textContent = 'Check plants for stress';
-            document.querySelector('.crop-care li:nth-child(3)').textContent = 'Follow a local nutrient plan';
+        const crops = {
+            tomato: {
+                name: 'Tomato',
+                icon: '🍅',
+                tips: [
+                    'Give water near the roots every morning',
+                    'Do not wet the leaves',
+                    'Use sticks or ropes to support the plants',
+                    'Remove dry or diseased leaves'
+                ]
+            },
+            pepper: {
+                name: 'Pepper',
+                icon: '🌶️',
+                tips: [
+                    'Give water when the soil feels dry',
+                    'Keep plants in good sunlight',
+                    'Do not let water stay around the roots',
+                    'Remove old and diseased leaves'
+                ]
+            },
+            potato: {
+                name: 'Potato',
+                icon: '🥔',
+                tips: [
+                    'Keep soil wet but not flooded',
+                    'Cover the lower stems with loose soil',
+                    'Give water evenly during dry days',
+                    'Check leaves for spots or insects'
+                ]
+            }
+        };
+        const cropQuery = new URLSearchParams(window.location.search).get('crop');
+        const initialCropKey = Object.prototype.hasOwnProperty.call(crops, cropQuery) ? cropQuery : 'tomato';
+
+        function selectCrop(cropKey) {
+            const selectedCrop = crops[cropKey];
+            document.querySelector('[data-crop-name]').textContent = selectedCrop.name;
+            document.querySelector('[data-crop-icon]').textContent = selectedCrop.icon;
+
+            const tipsList = document.querySelector('[data-crop-tips]');
+            tipsList.replaceChildren();
+            selectedCrop.tips.forEach((tip) => {
+                const item = document.createElement('li');
+                item.textContent = tip;
+                tipsList.appendChild(item);
+            });
+
+            document.querySelectorAll('[data-crop-key]').forEach((button) => {
+                const isSelected = button.dataset.cropKey === cropKey;
+                button.classList.toggle('active', isSelected);
+                button.setAttribute('aria-pressed', String(isSelected));
+            });
         }
+
+        document.querySelectorAll('[data-crop-key]').forEach((button) => {
+            button.addEventListener('click', () => selectCrop(button.dataset.cropKey));
+        });
+
+        selectCrop(initialCropKey);
     </script>
 </body>
 </html>

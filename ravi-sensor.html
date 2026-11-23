@@ -6,7 +6,7 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#2e7d32">
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <title>Sensor Monitoring · AgriSmart</title>
+    <title>Sensor Monitoring · AgriNex</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
@@ -19,25 +19,25 @@
         <section class="sensor-readings">
             <h2>Today's Sensor Readings</h2>
             <div class="sensor-grid" aria-label="Today's sensor readings">
-                <article class="app-card sensor-card">
+                <a class="app-card sensor-card sensor-card-link" href="ravi-alerts.html" aria-label="Soil Moisture is 18 percent, low. Open alerts.">
                     <span class="sensor-card-heading"><span class="sensor-icon">💧</span><span class="app-muted">Soil Moisture</span></span>
                     <strong>18<small>%</small></strong><span class="portal-status alert">Low</span>
-                </article>
-                <article class="app-card sensor-card">
+                </a>
+                <a class="app-card sensor-card sensor-card-link" href="ravi-alerts.html" aria-label="Temperature is 36 degrees Celsius, high. Open alerts.">
                     <span class="sensor-card-heading"><span class="sensor-icon">🌡️</span><span class="app-muted">Temperature</span></span>
                     <strong>36<small>°C</small></strong><span class="portal-status alert">High</span>
-                </article>
-                <article class="app-card sensor-card">
+                </a>
+                <a class="app-card sensor-card sensor-card-link" href="ravi-alerts.html" aria-label="Humidity is 34 percent, low. Open alerts.">
                     <span class="sensor-card-heading"><span class="sensor-icon">💨</span><span class="app-muted">Humidity</span></span>
                     <strong>34<small>%</small></strong><span class="portal-status alert">Low</span>
-                </article>
-                <article class="app-card sensor-card">
+                </a>
+                <a class="app-card sensor-card sensor-card-link" href="ravi-alerts.html" aria-label="pH is 5.2, low. Open alerts.">
                     <span class="sensor-card-heading"><span class="sensor-icon">🧪</span><span class="app-muted">pH</span></span>
                     <strong>5.2</strong><span class="portal-status alert">Low</span>
-                </article>
+                </a>
             </div>
         </section>
-        <nav class="portal-nav"><a href="ravi.html">⌂ Home</a><a class="active" href="ravi-sensor.html" aria-current="page">📶 Sensors</a><a href="ravi-alerts.html">🔔 Alerts (4)</a></nav>
+        <nav class="portal-nav"><a href="ravi.html">⌂ Home</a><a class="active" href="ravi-sensor.html" aria-current="page">📶 Sensors</a><a href="reports.html">▤ Reports</a></nav>
     </main>
 </body>
 </html>

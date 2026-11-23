@@ -6,42 +6,71 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#2e7d32">
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
-    <title>Reports · AgriSmart</title>
+    <title>Reports · AgriNex</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
 <body class="app-body">
-    <main class="app-shell" data-protected-page>
+    <main class="app-shell reports-page" data-protected-page>
         <header class="app-header"><h1>Reports & History</h1><a href="dashboard.html">⌂ Home</a></header>
         <section class="app-card">
-            <h2>Crop growth &amp; soil moisture</h2>
-            <div class="bar-chart" role="img" aria-label="Crop growth and soil moisture percentages">
-                <div><strong data-report-value="growth">65%</strong><i data-report-bar="growth" style="height:65%"></i><span>Crop growth</span></div>
-                <div><strong data-report-value="moisture">68%</strong><i data-report-bar="moisture" style="height:68%"></i><span>Soil moisture</span></div>
+            <h2>Sensor Readings</h2>
+            <div class="bar-chart" role="img" aria-label="Sensor readings for soil moisture, temperature, humidity, and pH">
+                <div style="--bar-height:68%"><strong data-report-value="moisture">68%</strong><i data-report-bar="moisture" style="height:68%"></i><span>Soil Moisture</span></div>
+                <div style="--bar-height:62%"><strong data-report-value="temperature">31°C</strong><i data-report-bar="temperature" style="height:62%"></i><span>Temperature</span></div>
+                <div style="--bar-height:74%"><strong data-report-value="humidity">74%</strong><i data-report-bar="humidity" style="height:74%"></i><span>Humidity</span></div>
+                <div style="--bar-height:52.9%"><strong data-report-value="ph">7.4</strong><i data-report-bar="ph" style="height:52.9%"></i><span>pH</span></div>
             </div>
         </section>
         <section class="app-grid">
             <article class="app-card"><h2>Harvest estimate</h2><strong>1.8 tons</strong></article>
-            <article class="app-card"><h2>Field health</h2><strong data-demo="farmStatus">Healthy</strong><p class="app-muted">Based on field readings</p></article>
+            <article class="app-card"><h2>Field health</h2><span data-demo="farmStatus">Healthy</span><p class="app-muted">Updated from AgriNex sensors</p></article>
         </section>
         <button class="app-button" id="download-report">Download report</button>
         <a class="app-back" href="dashboard.html">← Back to dashboard</a>
+        <nav class="portal-nav" aria-label="Main navigation">
+            <a href="dashboard.html">⌂ Home</a>
+            <a href="kumar-sensor.html" data-report-sensor-link>📶 Sensors</a>
+            <a class="active" href="reports.html" aria-current="page">▤ Reports</a>
+        </nav>
     </main>
     <script>
-        const reportReadings = sessionStorage.getItem('agrismart-active-farmer') === 'ravi'
-            ? { growth: 42, moisture: 18 }
-            : { growth: 65, moisture: 68 };
+        const isRavi = sessionStorage.getItem('agrinex-active-farmer') === 'ravi';
+        document.querySelector('[data-report-sensor-link]').href = isRavi
+            ? 'ravi-sensor.html'
+            : 'kumar-sensor.html';
+        const sensorReadings = isRavi
+            ? {
+                moisture: { label: '18%', value: 18, height: 18 },
+                temperature: { label: '36°C', value: 36, height: 72 },
+                humidity: { label: '34%', value: 34, height: 34 },
+                ph: { label: '5.2', value: 5.2, height: 37.1 }
+            }
+            : {
+                moisture: { label: '68%', value: 68, height: 68 },
+                temperature: { label: '31°C', value: 31, height: 62 },
+                humidity: { label: '74%', value: 74, height: 74 },
+                ph: { label: '7.4', value: 7.4, height: 52.9 }
+            };
 
-        Object.entries(reportReadings).forEach(([reading, value]) => {
-            document.querySelector(`[data-report-value="${reading}"]`).textContent = `${value}%`;
-            document.querySelector(`[data-report-bar="${reading}"]`).style.height = `${value}%`;
+        Object.entries(sensorReadings).forEach(([sensor, reading]) => {
+            document.querySelector(`[data-report-value="${sensor}"]`).textContent = reading.label;
+            document.querySelector(`[data-report-bar="${sensor}"]`).style.height = `${reading.height}%`;
+            document.querySelector(`[data-report-bar="${sensor}"]`).parentElement.style.setProperty('--bar-height', `${reading.height}%`);
         });
+        document.querySelector('.bar-chart').setAttribute(
+            'aria-label',
+            `Sensor readings: soil moisture ${sensorReadings.moisture.value}%, temperature ${sensorReadings.temperature.value} degrees Celsius, humidity ${sensorReadings.humidity.value}%, pH ${sensorReadings.ph.value}. Bars are scaled to 100%, 50 degrees Celsius, 100%, and pH 14 respectively.`
+        );
+        document.querySelector('[data-demo="farmStatus"]').textContent = isRavi
+            ? 'Needs attention'
+            : 'Healthy';
 
         document.getElementById('download-report').addEventListener('click', () => {
             const file = new Blob(['Month,Harvest (tons)\nJuly,1.2\nAugust,1.5\nSeptember,1.4\nOctober,1.8'], { type: 'text/csv' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(file);
-            link.download = 'agrismart-report.csv';
+            link.download = 'agrinex-report.csv';
             link.click();
             URL.revokeObjectURL(link.href);
         });

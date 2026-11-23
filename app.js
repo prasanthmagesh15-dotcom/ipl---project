@@ -1,4 +1,4 @@
-const activeKey = 'agrismart-active-farmer';
+const activeKey = 'agrinex-active-farmer';
 const accounts = { KUMAR: 'kumar', RAVI: 'ravi' };
 
 if ('serviceWorker' in navigator) {

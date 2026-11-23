@@ -1,5 +1,5 @@
 (function () {
-    const resultKey = 'agrismart-leaf-analysis';
+    const resultKey = 'agrinex-leaf-analysis';
     const imageSize = 160;
     const classLabels = [
         { crop: 'Pepper', condition: 'Bacterial Spot' },

@@ -1,5 +1,5 @@
 (function () {
-    const activeFarmerKey = 'agrismart-active-farmer';
+    const activeFarmerKey = 'agrinex-active-farmer';
     const readings = {
         kumar: { moisture: 68, temperature: 31, humidity: 74, ph: 7.4 },
         ravi: { moisture: 18, temperature: 36, humidity: 34, ph: 5.2 }
