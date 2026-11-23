@@ -7,24 +7,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-function updateOfflineStatus() {
-    let status = document.querySelector('[data-offline-status]');
-    if (!status) {
-        status = document.createElement('div');
-        status.dataset.offlineStatus = '';
-        status.setAttribute('role', 'status');
-        status.style.cssText = 'position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;padding:10px 14px;border-radius:20px;background:#263238;color:#fff;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.18)';
-        document.body.appendChild(status);
-    }
-    status.textContent = navigator.onLine ? '' : 'Offline mode - saved pages remain available';
-    status.hidden = navigator.onLine;
-}
-
 function initialize() {
-    updateOfflineStatus();
-    window.addEventListener('online', updateOfflineStatus);
-    window.addEventListener('offline', updateOfflineStatus);
-
     const form = document.querySelector('[data-login-form]');
     if (form) {
         sessionStorage.removeItem(activeKey);
@@ -34,8 +17,8 @@ function initialize() {
             const id = accounts[String(input.get('loginId') || '').trim().toUpperCase()];
             const error = document.querySelector('[data-login-error]');
 
-            if (!id || input.get('password') !== '1234') {
-                error.textContent = 'ID or password is incorrect.';
+            if (!id || input.get('password') !== '1505') {
+                error.textContent = 'Name or password is incorrect.';
                 return;
             }
 
