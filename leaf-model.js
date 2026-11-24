@@ -18,12 +18,180 @@
         { crop: 'Tomato', condition: 'Tomato Mosaic Virus' },
         { crop: 'Tomato', condition: 'Healthy' }
     ];
+    const diseaseDatabase = {
+        'Pepper|Bacterial Spot': {
+            cause: 'Bacteria can spread through infected seeds, rain splashes, and wet leaves.',
+            symptoms: 'Small dark spots, yellow patches, and damaged leaves.',
+            solution: [
+                'Remove badly affected leaves.',
+                'Avoid watering directly onto leaves.',
+                'Use healthy seedlings.',
+                'Maintain proper spacing.'
+            ],
+            prevention: 'Clean farming tools, rotate crops, and keep the field clean.'
+        },
+        'Pepper|Healthy': {
+            cause: 'No obvious disease symptoms were identified in this image.',
+            symptoms: 'The leaves appear generally healthy.',
+            solution: [
+                'Continue regular watering.',
+                'Provide sufficient sunlight.',
+                'Maintain healthy soil.'
+            ],
+            prevention: 'Inspect plants regularly.'
+        },
+        'Potato|Early Blight': {
+            cause: 'A fungus called Alternaria solani can cause this disease. Warm weather, plant stress, and infected debris can encourage it.',
+            symptoms: 'Brown circular spots with ring-like patterns, mainly on older leaves.',
+            solution: [
+                'Remove affected leaves.',
+                'Clear infected plant debris.',
+                'Maintain proper plant spacing.',
+                'Avoid water stress.'
+            ],
+            prevention: 'Rotate crops and use healthy seed potatoes.'
+        },
+        'Potato|Late Blight': {
+            cause: 'A fungus-like organism called Phytophthora infestans causes this disease. Cool, humid, and rainy weather can help it spread.',
+            symptoms: 'Dark, water-soaked patches and sometimes white growth under leaves.',
+            solution: [
+                'Remove infected plant material only after confirming the problem.',
+                'Improve field drainage.',
+                'Avoid moving infected tubers.',
+                'Ask an agriculture expert promptly.'
+            ],
+            prevention: 'Use healthy seed potatoes and monitor crops during wet weather.'
+        },
+        'Potato|Healthy': {
+            cause: 'No obvious disease symptoms were identified in this image.',
+            symptoms: 'The leaves appear generally healthy.',
+            solution: [
+                'Maintain proper irrigation.',
+                'Use healthy seed potatoes.',
+                'Monitor plants regularly.'
+            ],
+            prevention: 'Keep the field clean and rotate crops.'
+        },
+        'Tomato|Bacterial Spot': {
+            cause: 'Bacteria can spread through infected seeds, water splashes, and wet leaves.',
+            symptoms: 'Small dark spots, yellow patches, and damaged leaves.',
+            solution: [
+                'Remove affected leaves.',
+                'Avoid watering directly onto leaves.',
+                'Clean farming tools.',
+                'Use healthy seedlings.'
+            ],
+            prevention: 'Keep the field clean and rotate crops.'
+        },
+        'Tomato|Early Blight': {
+            cause: 'A fungus called Alternaria solani can cause this disease. Warm, humid weather and infected debris can encourage it.',
+            symptoms: 'Brown circular spots with ring-like patterns and yellow areas.',
+            solution: [
+                'Remove affected leaves.',
+                'Clear infected plant debris.',
+                'Maintain proper plant spacing.',
+                'Avoid water stress.'
+            ],
+            prevention: 'Rotate crops and use healthy seedlings.'
+        },
+        'Tomato|Late Blight': {
+            cause: 'A fungus-like organism called Phytophthora infestans causes this disease. Wet, humid weather can help it spread.',
+            symptoms: 'Dark, water-soaked patches on leaves and stems.',
+            solution: [
+                'Remove infected plant material only after confirming the problem.',
+                'Improve field drainage.',
+                'Avoid watering directly onto leaves.',
+                'Ask an expert promptly.'
+            ],
+            prevention: 'Monitor crops during rainy and humid weather.'
+        },
+        'Tomato|Leaf Mold': {
+            cause: 'A fungus called Passalora fulva can cause this disease. High humidity and poor airflow can encourage it.',
+            symptoms: 'Yellow patches on top of leaves and olive-green growth underneath.',
+            solution: [
+                'Remove badly affected leaves.',
+                'Improve airflow.',
+                'Avoid excess moisture on leaves.',
+                'Maintain proper plant spacing.'
+            ],
+            prevention: 'Maintain ventilation and avoid excessive humidity.'
+        },
+        'Tomato|Septoria Leaf Spot': {
+            cause: 'A fungus called Septoria lycopersici can spread through infected debris and rain splashes.',
+            symptoms: 'Small circular spots with grey centres and dark borders.',
+            solution: [
+                'Remove infected leaves.',
+                'Clear fallen plant debris.',
+                'Avoid wetting leaves.',
+                'Maintain proper spacing.'
+            ],
+            prevention: 'Keep the field clean and rotate crops.'
+        },
+        'Tomato|Spider Mites (Two-Spotted Spider Mite)': {
+            cause: 'Tiny mites feed on plant cells. Hot, dry weather can help them multiply.',
+            symptoms: 'Tiny pale spots, bronze-coloured leaves, and fine webbing.',
+            solution: [
+                'Inspect the undersides of leaves.',
+                'Remove heavily affected leaves.',
+                'Monitor nearby plants.',
+                'Ask an expert about suitable pest management.'
+            ],
+            prevention: 'Inspect plants regularly and maintain crop health.'
+        },
+        'Tomato|Target Spot': {
+            cause: 'A fungus called Corynespora cassiicola can cause this disease. Warm, humid weather can encourage it.',
+            symptoms: 'Brown circular spots with target-like rings.',
+            solution: [
+                'Remove affected leaves.',
+                'Improve airflow.',
+                'Avoid watering directly onto leaves.',
+                'Clear infected plant debris.'
+            ],
+            prevention: 'Maintain proper plant spacing and monitor crops.'
+        },
+        'Tomato|Tomato Mosaic Virus': {
+            cause: 'A virus can spread through infected seeds, contaminated hands, and farming tools.',
+            symptoms: 'Light and dark green patterns, curled leaves, and slow growth.',
+            solution: [
+                'Ask an agriculture expert to confirm before removing plants.',
+                'Clean tools and hands.',
+                'Avoid using contaminated tools on healthy plants.'
+            ],
+            prevention: 'Use healthy seeds and keep tools clean.'
+        },
+        'Tomato|Tomato Yellow Leaf Curl Virus': {
+            cause: 'A virus spread mainly by whiteflies.',
+            symptoms: 'Yellow, curled leaves, reduced growth, and a bushy appearance.',
+            solution: [
+                'Ask an agriculture expert to confirm before removing plants.',
+                'Monitor whiteflies.',
+                'Use protective practices in the nursery.',
+                'Ask for local pest-management advice.'
+            ],
+            prevention: 'Use healthy seedlings and monitor whiteflies regularly.'
+        },
+        'Tomato|Healthy': {
+            cause: 'No obvious disease symptoms were identified in this image.',
+            symptoms: 'The leaves appear generally healthy.',
+            solution: [
+                'Maintain proper watering.',
+                'Provide adequate sunlight.',
+                'Maintain healthy soil nutrients.'
+            ],
+            prevention: 'Continue regular crop inspection.'
+        }
+    };
 
     function showLatestResult() {
         const heading = document.getElementById('analysis-class');
         if (!heading) return;
 
         const scoreText = document.getElementById('analysis-score');
+        const guidanceText = document.getElementById('analysis-guidance');
+        const causeText = document.getElementById('analysis-cause');
+        const symptomsText = document.getElementById('analysis-symptoms');
+        const solutionsList = document.getElementById('analysis-solutions');
+        const preventionText = document.getElementById('analysis-prevention');
         const imageText = document.getElementById('analysis-image');
         let result;
         try {
@@ -38,10 +206,25 @@
         }
 
         const label = classLabels[result.classIndex];
+        const guidance = diseaseDatabase[`${label.crop}|${label.condition}`];
         heading.textContent = `${label.crop}: ${label.condition}`;
         scoreText.textContent = result.isProbability
             ? `Model score: ${(result.score * 100).toFixed(1)}%`
             : `Model score: ${result.score.toFixed(4)}`;
+        if (guidanceText && causeText && symptomsText && solutionsList && preventionText && guidance) {
+            causeText.textContent = guidance.cause;
+            symptomsText.textContent = guidance.symptoms;
+            solutionsList.textContent = '';
+            guidance.solution.forEach((step) => {
+                const item = document.createElement('li');
+                item.textContent = step;
+                solutionsList.appendChild(item);
+            });
+            preventionText.textContent = guidance.prevention;
+            guidanceText.hidden = false;
+        } else {
+            console.error(`Disease guidance is missing for ${label.crop}: ${label.condition}.`);
+        }
         imageText.textContent = `Image: ${result.imageName}`;
         imageText.hidden = false;
     }

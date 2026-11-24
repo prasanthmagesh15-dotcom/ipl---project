@@ -19,7 +19,15 @@
             <p class="app-muted">On-device model result</p>
             <h2 id="analysis-class">No leaf analyzed yet</h2>
             <p id="analysis-score">Choose a leaf image to run the offline model.</p>
+            <div id="analysis-guidance" hidden>
+                <p><strong>Possible cause:</strong> <span id="analysis-cause"></span></p>
+                <p><strong>What you may see:</strong> <span id="analysis-symptoms"></span></p>
+                <p><strong>Simple steps:</strong></p>
+                <ul id="analysis-solutions"></ul>
+                <p><strong>Prevention:</strong> <span id="analysis-prevention"></span></p>
+            </div>
             <p id="analysis-image" class="app-muted" hidden></p>
+            <p class="app-muted">This AI result is only a guide, not a confirmed diagnosis. Ask a local agriculture expert before treatment.</p>
         </section>
         <section class="app-card" aria-label="Offline farming chatbot">
             <h2>Offline Farm Chat</h2>

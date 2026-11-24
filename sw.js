@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agrinex-v20';
+const CACHE_NAME = 'agrinex-v24';
 const APP_FILES = [
   './',
   './index.html',
